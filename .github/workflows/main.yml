@@ -1,5 +1,171 @@
-index.html
-thank-you.html
-assets/logo.png
-assets/tree-background.jpg
-README.md (optional)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aspen Ridge Woodcrafters</title>
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f1ec;
+      color: #2b2b2b;
+    }
+
+    header {
+      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+                  url("https://images.unsplash.com/photo-1523413651479-597eb2da0ad6");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: .5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 2rem;
+    }
+
+    .builder {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    select, input {
+      width: 100%;
+      padding: .6rem;
+      margin-top: .3rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .preview {
+      border: 2px dashed #aaa;
+      border-radius: 10px;
+      background: #e7ddc8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 1rem;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #2f3b2f;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 800px) {
+      .builder {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Aspen Ridge Woodcrafters</h1>
+  <p>Custom Burned & Engraved Wood and Plastic Creations</p>
+</header>
+<section>
+  <h2>Customize Your Piece</h2>
+
+  <div class="builder">
+    <div>
+      <label>Material</label>
+      <select id="material" onchange="updatePreview()">
+        <option>Wood</option>
+        <option>Plastic</option>
+      </select>
+
+      <label>Wood Type</label>
+      <select id="wood" onchange="updatePreview()">
+        <option>Aspen</option>
+        <option>Cedar</option>
+        <option>Pine</option>
+        <option>Maple</option>
+      </select>
+
+      <label>Engraved Text</label>
+      <input
+        type="text"
+        id="text"
+        placeholder="Enter engraving text"
+        oninput="updatePreview()"
+      />
+
+      <div class="price">Flat Price: $35.00</div>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+        <input type="hidden" name="item_name" value="Custom Aspen Ridge Engraving">
+        <input type="hidden" name="amount" value="35.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://YOUR-SITE.netlify.app/thank-you.html">
+
+        <input
+          type="submit"
+          value="Buy Now"
+          style="
+            padding:1rem 2rem;
+            font-size:1.1rem;
+            background:#0070ba;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;">
+      </form>
+    </div>
+<div class="preview" id="preview">
+      Your custom engraving preview
+    </div>
+  </div>
+</section>
+<footer>
+  <p>© 2026 Aspen Ridge Woodcrafters</p>
+</footer>
+<script>
+  function updatePreview() {
+    const material = document.getElementById("material").value;
+    const wood = document.getElementById("wood").value;
+    const text = document.getElementById("text").value || "Your custom engraving preview";
+
+    document.getElementById("preview").innerHTML =
+      `<strong>${text}</strong><br><small>${material} – ${wood}</small>`;
+  }
+</script>
+</body>
+</html>
